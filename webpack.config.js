@@ -27,6 +27,22 @@ module.exports = {
         },
       },
       {
+        test: /\.tsx?$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: "babel-loader",
+            options: {
+              // attach the presets to the loader (most projects use .babelrc file instead)
+              presets: ["@babel/preset-env", "@babel/preset-react"],
+            },
+          },
+          {
+            loader: "ts-loader",
+          },
+        ],
+      },
+      {
         test: /\.s[ac]ss$/i,
         use: [
           // Creates `style` nodes from JS strings
@@ -38,6 +54,9 @@ module.exports = {
         ],
       },
     ],
+  },
+  resolve: {
+    extensions: [".tsx", ".ts", ".js"],
   },
   // add a custom index.html as the template
   plugins: [
